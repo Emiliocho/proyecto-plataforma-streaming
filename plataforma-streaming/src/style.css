@@ -1,0 +1,56 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-background: #001D3D;
+  --primary-text: #FFFFFF;
+  --primary-accent: #FFC300;
+  --secondary-accent: #FFD60A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--primary-background);
+  color: white;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+}
+
+.navbar li {
+  padding: 1rem;
+  text-decoration: none;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 1.5rem;
+}
+
+.navbar a:hover {
+  background-color: var(--primary-accent);
+  color: var(--primary-background);
+}
