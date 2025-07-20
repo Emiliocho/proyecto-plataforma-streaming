@@ -1,0 +1,68 @@
+:root {
+  --primary-background: #001D3D;
+}
+
+.home {
+  display: block;
+  width: 100vw;
+  height: calc(100vh - 88px);
+}
+
+.carrusel {
+  display: flex;
+  position: relative;
+  width: 100vw;
+}
+
+.item {
+    display: none;
+    opacity: 0;
+    transition: 1s ease-out;
+    width: 100vw;
+}
+
+.item.active {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100vw;
+    animation: fadeOut 4s infinite;
+}
+
+@keyframes fadeOut {
+    0%, 90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  inset: 0;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
+  z-index: 1;
+}
+
+.item img {
+  width: 100%;
+  height: calc(100vh - 88px);
+  object-fit: cover;
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  color: white;
+  text-align: left;
+  z-index: 2;
+  margin-bottom: 10rem;
+}
