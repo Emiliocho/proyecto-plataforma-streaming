@@ -7,5 +7,8 @@ import { initCarrusel } from './components/home/carrusel.js';
 
 document.querySelector('header').appendChild(Navbar());
 document.querySelector('#app').appendChild(Home());
+document.querySelector('#app').appendChild(PopularSeries());
+
+
 initCarrusel();
 

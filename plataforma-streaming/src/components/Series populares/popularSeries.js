@@ -1,4 +1,6 @@
 import './series.css';
+import adolescence from '../../assets/adolescence.webp';
+import squidGames from '../../assets/squid-games-3.webp';
 
 export function PopularSeries() {
     const popularSeries = document.createElement('section');
@@ -7,10 +9,18 @@ export function PopularSeries() {
         <h2>Series Populares</h2>
         <div class="container">
             <div class="card">
-                <img src="https://www.peliculas-hd.es/wp-content/uploads/2022/03/The-Witcher-S01E01-HD-720p.jpg" alt="The Witcher">
-                <div class="info">
-                    <h3>The Witcher</h3>
-                    <p>La saga de los hechiceros de la Tierra de Narnia, cuando los reinos de la Tierra de Narnia se convierten en una civilización de hechiceros.</p>
+                <img src="${adolescence}" alt="adolescence">
+                <div class="card-info">
+                    <h2>Adolescence</h2>
+                    <p>Drama psicológico que explora las transiciones emocionales en un mundo distópico.</p>
+                 </div>
+            </div>
+
+            <div class="card">
+                <img src="${squidGames}" alt="Squid Games">
+                <div class="card-info">
+                <h2>Squid Games</h2>
+                <p>Una serie de juegos de acción y aventura para niños de 8 años.</p>
                 </div>
             </div>
         </div>
