@@ -20,7 +20,7 @@ export function PopularSeries() {
                 <img src="${squidGames}" alt="Squid Games">
                 <div class="card-info">
                 <h2>Squid Games</h2>
-                <p>Una serie de juegos de acción y aventura para niños de 8 años.</p>
+                <p>es una serie surcoreana de suspenso y supervivencia que presenta juegos infantiles con consecuencias mortales.</p>
                 </div>
             </div>
         </div>
