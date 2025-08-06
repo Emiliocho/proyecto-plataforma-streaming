@@ -9,9 +9,9 @@ export function Perfil() {
     if (userDataJSON) {
         try {
             const userData = JSON.parse(userDataJSON);
-            const { email, password, username = 'Usuario', plan = 'Free' } = userData;
+            const { email, password, username, plan = 'Free' } = userData;
 
-            if (email && password && username) {
+            if (email && password && typeof username === 'string' && username.trim() !== '') {
                 perfil.innerHTML = `
                     <div class="container">
                         <div class="info">

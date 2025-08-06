@@ -1,5 +1,5 @@
 import '../navbar/navbar.css';
-import { getRoute } from '../../routes/router.js';
+import { getRoute, ROUTES } from '../../routes/router.js';
 
 // La función Navbar ahora recibe renderRoute como argumento
 export function Navbar(renderRoute) {
@@ -24,26 +24,26 @@ export function Navbar(renderRoute) {
   // Navegación general
   navbar.querySelector('#nav-home').addEventListener('click', (e) => {
     e.preventDefault();
-    window.history.pushState({}, '', getRoute('home'));
+    window.history.pushState({}, '', getRoute(ROUTES.HOME));
     if (renderRoute) renderRoute();
   });
 
   navbar.querySelector('#nav-series').addEventListener('click', (e) => {
     e.preventDefault();
-    window.history.pushState({}, '', getRoute('series'));
+    window.history.pushState({}, '', getRoute(ROUTES.SERIES));
     if (renderRoute) renderRoute();
   });
 
   navbar.querySelector('#nav-peliculas').addEventListener('click', (e) => {
     e.preventDefault();
-    window.history.pushState({}, '', getRoute('peliculas'));
+    window.history.pushState({}, '', getRoute(ROUTES.PELICULAS));
     if (renderRoute) renderRoute();
   });
 
   // Acción para ver perfil
   navbar.querySelector('#view-profile').addEventListener('click', (e) => {
     e.preventDefault();
-    window.history.pushState({}, '', getRoute('perfil'));
+    window.history.pushState({}, '', getRoute(ROUTES.PERFIL));
     if (renderRoute) renderRoute();
   });
 
@@ -51,7 +51,7 @@ export function Navbar(renderRoute) {
   navbar.querySelector('#logout').addEventListener('click', (e) => {
     e.preventDefault();
     localStorage.setItem('isLoggedIn', 'false');
-    window.history.pushState({}, '', getRoute('login'));
+    window.history.pushState({}, '', getRoute(ROUTES.LOGIN));
     if (renderRoute) renderRoute();
   });
 
