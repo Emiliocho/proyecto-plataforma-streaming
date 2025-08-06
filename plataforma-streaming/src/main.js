@@ -4,46 +4,76 @@ import { Home } from './components/home/home.js';
 import { PopularSeries } from './components/Series populares/popularSeries.js';
 import { initCarrusel } from './components/home/carrusel.js';
 import { renderLogin, handleLoginEvents, renderRoute } from './routes/login/login.js';
+import { Perfil } from './routes/perfil/perfil.js';
+import { series } from './routes/series/series.js';
+import { peliculas } from './routes/peliculas/peliculas.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = document.getElementById('app');
 
-  // Función que maneja el renderizado de toda la aplicación
-  function renderApp() {
-    // Obtiene el estado de autenticación
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const currentPath = window.location.pathname;
-
-    app.innerHTML = ''; // Limpia el contenido antes de renderizar
-
-    if (isLoggedIn) {
-      // Si el usuario está autenticado y está en una página de login, redirige a la principal
-      if (currentPath === '/login' || currentPath === '/register' || currentPath === '/login/basic') {
-        window.history.pushState({}, '', '/');
-      }
-      
-      // Renderiza la vista principal
-      app.appendChild(Navbar(renderApp)); // Pasa renderApp a Navbar
+  const routes = {
+    '/': () => {
       app.appendChild(Home());
       app.appendChild(PopularSeries());
       initCarrusel();
-      
+    },
+    '/perfil': () => {
+      const perfilComponent = Perfil();
+      if (perfilComponent) app.appendChild(perfilComponent);
+    },
+    '/series': () => {
+      const seriesComponent = series();
+      if (seriesComponent) app.appendChild(seriesComponent);
+    },
+    '/peliculas': () => {
+      const peliculasComponent = peliculas();
+      if (peliculasComponent) app.appendChild(peliculasComponent);
+    }
+  };
+
+  function renderApp() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const currentPath = window.location.pathname;
+    app.innerHTML = '';
+
+    if (isLoggedIn) {
+      const userData = localStorage.getItem('userData');
+      const isValidUser = userData && (() => {
+        try {
+          const { email, password, username } = JSON.parse(userData);
+          return email && password && username;
+        } catch {
+          return false;
+        }
+      })();
+
+      if (!isValidUser) {
+        localStorage.removeItem('isLoggedIn');
+        window.history.pushState({}, '', '/login');
+        renderApp();
+        return;
+      }
+
+      if (['/login', '/register', '/login/basic'].includes(currentPath)) {
+        window.history.pushState({}, '', '/');
+      }
+
+      app.appendChild(Navbar(renderApp));
+
+      const routeHandler = routes[currentPath] || routes['/'];
+      routeHandler();
+
     } else {
-      // Si el usuario no está autenticado, asegura que esté en una ruta de login/register
-      if (currentPath !== '/login' && currentPath !== '/register' && currentPath !== '/login/basic') {
+      if (!['/login', '/register', '/login/basic'].includes(currentPath)) {
         window.history.pushState({}, '', '/login');
       }
-      
-      // Renderiza la vista de login/registro
+
       app.innerHTML = renderLogin();
-      handleLoginEvents(renderApp); // Pasa renderApp a handleLoginEvents
+      handleLoginEvents(renderApp);
       renderRoute();
     }
   }
 
-  // Se inicia la aplicación
   renderApp();
-
-  // Escucha los cambios de URL para re-renderizar
   window.addEventListener('popstate', renderApp);
 });

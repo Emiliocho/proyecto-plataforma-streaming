@@ -1,7 +1,13 @@
+import { peliculas } from "./peliculas/peliculas";
+
 const routes = {
     home: '/',
-    seriesPopulares: '/series-populares',
+    series: '/series',
+    peliculas: '/peliculas',
     perfil: '/perfil',
+    login: '/login',
+    register: '/register',
+    loginBasic: '/login/basic',
 };
 
 export function getRoute(path) {
